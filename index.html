@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+   * {
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       border: none;
+       text-decoration: none;
+       background: none;
+       -webkit-font-smoothing: antialiased;
+   }
+   
+   menu, ol, ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+   }
+
+   html {
+       font-size: 16px;
+   }
+
+   body {
+       margin: 0;
+       padding: 0;
+       overflow-x: hidden;
+   }
+
+   .frame-1 {
+       width: 100%;
+       min-height: 100vh;
+       position: relative;
+       background: #ffffff;
+   }
+
+   /* Hero Section - Updated */
+   .hero-section {
+       position: relative;
+       width: 100%;
+       min-height: 650px;
+       display: flex;
+       flex-direction: column;
+   }
+
+   .hero-background {
+       position: absolute;
+       inset: 0;
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+   }
+
+   .hero-overlay {
+       position: relative;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       padding: 5rem;
+       width: 100%;
+       min-height: 650px;
+       background-color: rgba(15, 23, 42, 0.8);
+   }
+
+   .hero-logo {
+       object-fit: contain;
+       max-width: 100%;
+       aspect-ratio: 2.41;
+       width: 1161px;
+   }
+
+   /* Main Title */
+   .main-title {
+       color: #333333;
+       text-align: center;
+       font-family: "Inter-Regular", sans-serif;
+       font-size: clamp(1.5rem, 4vw, 2.05rem);
+       line-height: 1.1;
+       letter-spacing: 0.85px;
+       font-weight: 400;
+       padding: 3rem 1rem;
+       max-width: 900px;
+       margin: 0 auto;
+   }
+
+   /* Features Grid */
+   .features-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+       gap: 2rem;
+       padding: 2rem 1rem;
+       max-width: 1200px;
+       margin: 0 auto;
+   }
+
+   .feature-item {
+       text-align: center;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       gap: 1rem;
+   }
+
+   .feature-icon {
+       width: 60px;
+       height: auto;
+   }
+
+   .feature-text {
+       color: #333333;
+       font-family: "Inter-Regular", sans-serif;
+       font-size: 1.0625rem;
+       line-height: 1.5;
+       letter-spacing: 0.85px;
+   }
+
+   /* Content Sections */
+   .content-section {
+       padding: 4rem 1rem;
+       max-width: 1200px;
+       margin: 0 auto;
+   }
+
+   .content-row {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 3rem;
+       align-items: flex-start;
+       margin-bottom: 4rem;
+   }
+
+   .content-row.reverse {
+       flex-direction: row-reverse;
+   }
+
+   .content-image {
+       flex: 1;
+       min-width: 300px;
+   }
+
+   .content-image img {
+       width: 100%;
+       height: auto;
+       object-fit: cover;
+       border-radius: 8px;
+   }
+
+   .content-text {
+       flex: 1;
+       min-width: 300px;
+   }
+
+   .section-title {
+       color: #000000;
+       font-family: "Inter-Regular", sans-serif;
+       font-size: clamp(1.8rem, 3vw, 2.45rem);
+       line-height: 1.2;
+       letter-spacing: 1px;
+       font-weight: 400;
+       text-transform: uppercase;
+       margin-bottom: 2rem;
+   }
+
+   .section-description {
+       color: #000000;
+       font-family: "Inter-Regular", sans-serif;
+       font-size: 1.0625rem;
+       line-height: 2.35;
+       letter-spacing: 1px;
+   }
+
+   .section-description strong {
+       font-family: "Inter-Bold", sans-serif;
+       font-weight: 700;
+   }
+
+   .section-description ul {
+       list-style-type: disc;
+       padding-left: 1.5em;
+       margin-top: 1rem;
+   }
+
+   .section-description li {
+       margin-bottom: 0.5rem;
+   }
+
+   /* Footer */
+   .footer {
+       background: url('vector1.svg') center/cover no-repeat;
+       background-color: #333;
+       color: #ffffff;
+       padding: 4rem 1rem 2rem;
+       margin-top: 4rem;
+   }
+
+   .footer-content {
+       max-width: 1200px;
+       margin: 0 auto;
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+       gap: 3rem;
+   }
+
+   .footer-section {
+       text-align: center;
+   }
+
+   .footer-logo {
+       height: 50px;
+       margin-bottom: 1rem;
+   }
+
+   .footer-text {
+       font-family: "Inter-Regular", sans-serif;
+       font-size: 0.875rem;
+       line-height: 1.7;
+       letter-spacing: 1px;
+       text-transform: uppercase;
+   }
+
+   .footer-link {
+       color: #ffffff;
+       text-decoration: underline;
+   }
+
+   .footer-bottom {
+       text-align: center;
+       padding-top: 2rem;
+       margin-top: 2rem;
+       border-top: 1px solid rgba(255,255,255,0.2);
+   }
+
+   /* Responsive Media Queries */
+   @media (max-width: 768px) {
+       .hero-overlay {
+           padding: 1.25rem;
+       }
+
+       .hero-logo {
+           width: 100%;
+           max-width: 600px;
+       }
+
+       .features-grid {
+           grid-template-columns: repeat(2, 1fr);
+           gap: 1.5rem;
+       }
+
+       .content-row,
+       .content-row.reverse {
+           flex-direction: column;
+       }
+
+       .content-image,
+       .content-text {
+           min-width: 100%;
+       }
+
+       .section-title {
+           font-size: 1.8rem;
+       }
+
+       .main-title {
+           font-size: 1.5rem;
+           padding: 2rem 1rem;
+       }
+
+       .footer-content {
+           grid-template-columns: 1fr;
+           text-align: left;
+       }
+
+       .footer-section {
+           text-align: left;
+       }
+   }
+
+   @media (max-width: 480px) {
+       .features-grid {
+           grid-template-columns: 1fr;
+       }
+
+       .section-title {
+           font-size: 1.5rem;
+       }
+
+       .main-title {
+           font-size: 1.25rem;
+       }
+
+       .content-section {
+           padding: 2rem 1rem;
+       }
+   }
+
+   @media (min-width: 1920px) {
+       .frame-1 {
+           max-width: 1920px;
+           margin: 0 auto;
+       }
+   }
+  </style>
+  <title>Компрессионные гольфы</title>
+</head>
+<body>
+  <div class="frame-1">
+    <!-- Hero Section - Updated -->
+    <section class="hero-section">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/7abe8c400023b1cf5d29900737a23330a69cb3a6?placeholderIfAbsent=true&apiKey=a562078607f34dd6b90c325fe14c4696" alt="Background" class="hero-background">
+      <div class="hero-overlay">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f6a55ae0deba55943558b9bcf80e9b69273749e9?placeholderIfAbsent=true&apiKey=a562078607f34dd6b90c325fe14c4696" alt="Logo" class="hero-logo">
+      </div>
+    </section>
+
+    <!-- Main Title -->
+    <h1 class="main-title">БЕГИ, ПРЫГАЙ, ЛЕТИ — ГОЛЬФЫ ДЕРЖАТ УДАР!</h1>
+
+    <!-- Features Grid -->
+    <div class="features-grid">
+      <div class="feature-item">
+        <img class="feature-icon" src="group-80.svg" alt="Feature 1" />
+        <div class="feature-text">
+          Компенсация<br />повышенных нагрузок
+        </div>
+      </div>
+      <div class="feature-item">
+        <img class="feature-icon" src="group-30.svg" alt="Feature 2" />
+        <div class="feature-text">
+          Компенсация<br />ударных нагрузок
+        </div>
+      </div>
+      <div class="feature-item">
+        <img class="feature-icon" src="group-40.svg" alt="Feature 3" />
+        <div class="feature-text">
+          На все<br />случаи жизни
+        </div>
+      </div>
+      <div class="feature-item">
+        <img class="feature-icon" src="group-70.svg" alt="Feature 4" />
+        <div class="feature-text">
+          Поддержка<br />венозного кровотока
+        </div>
+      </div>
+      <div class="feature-item">
+        <img class="feature-icon" src="group-50.svg" alt="Feature 5" />
+        <div class="feature-text">
+          Невидимая<br />забота
+        </div>
+      </div>
+      <div class="feature-item">
+        <img class="feature-icon" src="group-60.svg" alt="Feature 6" />
+        <div class="feature-text">
+          Лёгкость<br />в ногах
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="content-section">
+      <!-- Мужские виды спорта -->
+      <div class="content-row">
+        <div class="content-image">
+          <img src="rectangle0.png" alt="Мужские виды спорта" />
+        </div>
+        <div class="content-text">
+          <h2 class="section-title">МУЖСКИЕ ВИДЫ СПОРТА</h2>
+          <div class="section-description">
+            Бегуны, велосипедисты, кроссфитеры (интенсивные нагрузки).<br /><br />
+            <strong>ПРОБЛЕМА</strong>:<br />
+            <ul>
+              <li>Мышечная усталость</li>
+              <li>Микротравмы сосудов.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Женские виды спорта -->
+      <div class="content-row reverse">
+        <div class="content-image">
+          <img src="rectangle1.png" alt="Женские виды спорта" />
+        </div>
+        <div class="content-text">
+          <h2 class="section-title">ЖЕНСКИЕ ВИДЫ СПОРТА</h2>
+          <div class="section-description">
+            Бег, велоспорт, функциональный тренинг (пилатес, барре, HIIT)<br /><br />
+            <strong>ПРОБЛЕМА</strong>:<br />
+            <ul>
+              <li>Сосудистая сеточка и тяжесть в ногах</li>
+              <li>Мышечные микротравмы при циклических нагрузках,</li>
+              <li>Отёчность после длительной статики (йога, стретчинг).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Для тех, кого ноги кормят -->
+      <div class="content-row">
+        <div class="content-image">
+          <img src="rectangle2.png" alt="Для тех, кого ноги кормят" />
+        </div>
+        <div class="content-text">
+          <h2 class="section-title">ДЛЯ ТЕХ, КОГО НОГИ КОРМЯТ</h2>
+          <div class="section-description">
+            ПРОДАВЦЫ, ПАРИКМАХЕРЫ, УЧИТЕЛЯ, ОФИСНЫЕ РАБОТНИКИ.<br /><br />
+            <strong>ПРОБЛЕМА</strong>:<br />
+            <ul>
+              <li>Боль в ногах</li>
+              <li>Сосудистые «звёздочки»</li>
+              <li>Застой крови</li>
+              <li>Отёки</li>
+              <li>Тяжесть в ногах к вечеру...</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Путешественники -->
+      <div class="content-row reverse">
+        <div class="content-image">
+          <img src="rectangle3.png" alt="Путешественники" />
+        </div>
+        <div class="content-text">
+          <h2 class="section-title">ПУТЕШЕСТВЕННИКИ</h2>
+          <div class="section-description">
+            Долгие перелёты, переезды, пешие экскурсии, горные походы, жаркий климат.<br /><br />
+            <strong>ПРОБЛЕМА</strong>:<br />
+            <ul>
+              <li>Отёки и тяжесть в ногах из-за долгого сидения (самолёт, автобус, поезд)</li>
+              <li>Риск тромбоза при низкой подвижности</li>
+              <li>Усталость и боль в мышцах после длительных прогулок или трекинга</li>
+              <li>Дискомфорт в ногах при смене климата и высокой влажности.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-text">
+            СВЯЖИТЕСЬ С НАМИ:<br />
+            8 931 2579084<br />
+            8 995 6069084<br />
+            <a href="mailto:compressors8@mail.ru" class="footer-link">compressors8@mail.ru</a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <img class="footer-logo" src="group-100.svg" alt="Footer Logo" />
+        </div>
+        <div class="footer-section">
+          <div class="footer-text">
+            ХОТИТЕ<br />
+            БОЛЬШЕ ИНФОРМАЦИИ<br />
+            О НАШИХ ТОВАРАХ?<br /><br />
+            www.ecoten.ru
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-text">© 2025 КОМПРЕССОРЫ</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
